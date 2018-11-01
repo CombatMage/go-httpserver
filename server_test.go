@@ -5,19 +5,19 @@ import "github.com/stretchr/testify/assert"
 
 func TestGetLocalFileForRoute(t *testing.T) {
 	// arrange
-	unit := newFileServer()
+	unit := newFileServer("testdata/www", "testdata/www/index.html")
 
 	// action
-	html, _ := unit.routes["/view-stream.html"]
+	html, _ := unit.routes["/index.html"]
 	rootRedirected, _ := unit.routes["/"]
 	// verify
-	assert.Equal(t, "www/view-stream.html", html)
-	assert.Equal(t, "www/view-stream.html", rootRedirected)
+	assert.Equal(t, "testdata/www/index.html", html)
+	assert.Equal(t, "testdata/www/index.html", rootRedirected)
 
 	// action
-	js, _ := unit.routes["/jsmpeg.min.js"]
+	js, _ := unit.routes["/gopher.png"]
 	// verify
-	assert.Equal(t, "www/jsmpeg.min.js", js)
+	assert.Equal(t, "testdata/www/gopher.png", js)
 
 	// action
 	_, ok := unit.routes["/.."]
