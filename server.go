@@ -25,6 +25,11 @@ func (server fileServer) listenAndServe(port int) {
 	http.ListenAndServe(normPort, nil)
 }
 
+func (server fileServer) listenAndServeSSL(port int, certFile string, keyFile string) {
+	normPort := fmt.Sprintf(":%d", port)
+	http.ListenAndServeTLS(normPort, certFile, keyFile, nil)
+}
+
 func (server fileServer) serve(w http.ResponseWriter, r *http.Request) {
 	requested := r.RequestURI
 	local, ok := server.routes[requested]
