@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestcheckSSLArgs(t *testing.T) {
+func TestCheckSSLArgs(t *testing.T) {
 	// arrange
 	args := sslArgs{
 		useEncryption: false,
