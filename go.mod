@@ -1,4 +1,4 @@
-module github.com/CombatMage/go-httpserver
+module github.com/EricNeid/go-httpserver
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
