@@ -1,3 +1,6 @@
 debug
 *.exe
 .vs
+.vscode/
+privkey.pem
+fullchain.pem
