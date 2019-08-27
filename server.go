@@ -25,11 +25,6 @@ func (server fileServer) listenAndServe(port int) {
 	http.ListenAndServe(normPort, nil)
 }
 
-func (server fileServer) listenAndServeSSL(port int, certFile string, keyFile string) {
-	normPort := fmt.Sprintf(":%d", port)
-	http.ListenAndServeTLS(normPort, certFile, keyFile, nil)
-}
-
 func (server fileServer) serve(w http.ResponseWriter, r *http.Request) {
 	requested := r.RequestURI
 	local, ok := server.routes[requested]
@@ -49,7 +44,8 @@ func (server fileServer) serve(w http.ResponseWriter, r *http.Request) {
 }
 
 // newFileServer new instance of server for static files.
-// It constructs all valid routes from walking the www-dir.
+// It constructs all valid routes from walking the provided directory.
+// Requests to / are redirect to given index file.
 func newFileServer(serveDir string, index string) *fileServer {
 	r := make(map[string]string)
 	filepath.Walk(serveDir, func(p string, info os.FileInfo, _ error) error {

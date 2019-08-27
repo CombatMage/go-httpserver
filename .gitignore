@@ -4,3 +4,4 @@ debug
 .vscode/
 privkey.pem
 fullchain.pem
+go-httpserver
